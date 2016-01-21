@@ -28,15 +28,21 @@ namespace GridComponent.Controllers
                     RegistrationDate = new DateTime(2012, 4, 6)
                 },
             };
-
+            
             return View(clients);
         }
 
+        public HttpStatusCodeResult Item()
+        {
+          return new HttpStatusCodeResult(200);
+        }
+
+        [HttpPost]
         public HttpStatusCodeResult Save()
         {
             try
             {
-                using (var context = new EntitiesContext<Client>()) //<T>
+                using (var context = new EntitiesContext<Client>())
                 {
                     var client = new Client
                     {
@@ -68,6 +74,25 @@ namespace GridComponent.Controllers
             }
 
             return new HttpStatusCodeResult(200);
+        }
+
+        [HttpGet]
+        public RedirectToRouteResult Delete<TEntity>(int id) where TEntity : class, new()
+        {
+            try
+            {
+                using (var context = new EntitiesContext<TEntity>())
+                {
+                    context.Entities.Remove(new TEntity());
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
