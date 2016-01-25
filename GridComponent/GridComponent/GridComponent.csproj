@@ -133,16 +133,16 @@
     </Compile>
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\HtmlTable\FormatSpecification.cs" />
+    <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
     <Compile Include="Models\HtmlTable\PropertySpecification.cs" />
-    <Compile Include="Models\HtmlTable\ValueColumn.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Constants\DataTypes.cs" />
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\HtmlTable\EntryButtonCell.cs" />
     <Compile Include="Models\HtmlTable\EntryPropertyCell.cs" />
     <Compile Include="Models\HtmlTable\HtmlTableBuilder.cs" />
-    <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
     <Compile Include="Models\HtmlTable\Table.cs" />
+    <Compile Include="Models\HtmlTable\Column.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
