@@ -1,3 +1,13 @@
-﻿@model List<GridComponent.Models.Client>
+﻿@model List<Client>
 
-@Html.Grid(Model)
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/Index")
+}
+
+<div ng-controller="GridController">
+    <form id="form">
+        @Html.Grid(Model)
+    </form>
+</div>

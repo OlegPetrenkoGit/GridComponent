@@ -2,11 +2,12 @@
 
 namespace GridComponent.Models
 {
-    public class Client// : Entity
+    public class Client
     {
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int Score { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime BirthDate { get; set; }
 

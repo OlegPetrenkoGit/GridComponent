@@ -1,44 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using GridComponent.DataAccess;
 using GridComponent.Models;
+using GridComponent.Models.DataAccess;
+using GridComponent.Models.HtmlTable;
 
 namespace GridComponent.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller, IHomeController
     {
-        public ViewResult Index()
-        {
-            var clients = new List<Client>
+        private readonly List<Client> clients = new List<Client>
             {
                 new Client()
                 {
                     BirthDate = new DateTime(1992, 7, 23),
-                    Login = "Anthony",
-                    Password = "Hidden",
+                    Name = "Anthony",
+                    Surname = "Hidden",
                     RegistrationDate = new DateTime(2010, 11, 12)
                 },
 
                 new Client()
                 {
                     BirthDate = new DateTime(1997, 2, 11),
-                    Login = "Joseph",
-                    Password = "Secret",
+                    Name = "Joseph",
+                    Surname = "Secret",
                     RegistrationDate = new DateTime(2012, 4, 6)
                 },
             };
-            
+
+
+        public ViewResult Index()
+        {
+
             return View(clients);
         }
 
-        public HttpStatusCodeResult Item()
+        [HttpPost]
+        public ActionResult Create(object obj, Type t)
         {
-          return new HttpStatusCodeResult(200);
+            return View();
         }
 
         [HttpPost]
-        public HttpStatusCodeResult Save()
+        public ActionResult Update(object obj, Type t)
         {
             try
             {
@@ -47,8 +51,8 @@ namespace GridComponent.Controllers
                     var client = new Client
                     {
                         BirthDate = new DateTime(1997, 2, 11),
-                        Login = "TEST",
-                        Password = "TEST",
+                        Name = "TEST",
+                        Surname = "TEST",
                         RegistrationDate = new DateTime(2012, 4, 6)
                     };
 
@@ -76,14 +80,14 @@ namespace GridComponent.Controllers
             return new HttpStatusCodeResult(200);
         }
 
-        [HttpGet]
-        public RedirectToRouteResult Delete<TEntity>(int id) where TEntity : class, new()
+        [HttpPost]
+        public ActionResult Delete(object obj, Type t)
         {
             try
             {
-                using (var context = new EntitiesContext<TEntity>())
+                using (var context = new EntitiesContext<Client>())
                 {
-                    context.Entities.Remove(new TEntity());
+                    context.Entities.Remove(new Client());
                     context.SaveChanges();
                 }
             }
@@ -93,6 +97,22 @@ namespace GridComponent.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetFormatSpecification(string type)
+        {
+            FormatSpecification formatSpecification = new FormatSpecification();
+            switch (type)
+            {
+                case "client":
+                    {
+                        var client = new Client();
+                        formatSpecification = FormatSpecification.Create(client);
+                        break;
+                    }
+            }
+
+            return Json(formatSpecification, JsonRequestBehavior.AllowGet);
         }
     }
 }

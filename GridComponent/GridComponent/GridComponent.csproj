@@ -125,19 +125,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DataAccess\EntitiesContext.cs" />
-    <Compile Include="DataAccess\SqlServerConfiguration.cs" />
+    <Compile Include="Controllers\IHomeController.cs" />
+    <Compile Include="Models\DataAccess\EntitiesContext.cs" />
+    <Compile Include="Models\DataAccess\SqlServerConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Apartment.cs" />
-    <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\HtmlTable\FormatSpecification.cs" />
+    <Compile Include="Models\HtmlTable\PropertySpecification.cs" />
+    <Compile Include="Models\HtmlTable\ValueColumn.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Constants\DataTypes.cs" />
-    <Compile Include="Models\Entity.cs" />
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
-    <Compile Include="Models\HtmlTableBuilder.cs" />
-    <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\HtmlTable\EntryButtonCell.cs" />
+    <Compile Include="Models\HtmlTable\EntryPropertyCell.cs" />
+    <Compile Include="Models\HtmlTable\HtmlTableBuilder.cs" />
+    <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
+    <Compile Include="Models\HtmlTable\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,8 +151,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\Home\Index\controllers.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Libraries\angular.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -159,7 +167,9 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
