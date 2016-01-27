@@ -75,9 +75,9 @@ namespace GridComponent.Models.HtmlTable
             {
                 Attributes =
                 {
-                    { "ng-click", "AddEntity()" },
+                    { "ng-click", "showAddEntity()" },
                     { "class", "button-add" },
-                    { "disabled", "disabled" }
+                    { "ng-disabled", "buttonAddDisabled" }
                 },
                 InnerHtml = "Add " + entityTypeName
             };

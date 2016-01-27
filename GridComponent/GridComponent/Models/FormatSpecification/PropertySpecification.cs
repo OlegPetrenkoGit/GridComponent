@@ -1,4 +1,4 @@
-﻿namespace GridComponent.Models.HtmlTable
+﻿namespace GridComponent.Models.FormatSpecification
 {
     public class PropertySpecification
     {

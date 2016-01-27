@@ -132,9 +132,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Apartment.cs" />
-    <Compile Include="Models\HtmlTable\FormatSpecification.cs" />
+    <Compile Include="Models\FormatSpecification\FormatSpecification.cs" />
+    <Compile Include="Models\FormatSpecification\FormatSpecificationFactory.cs" />
     <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
-    <Compile Include="Models\HtmlTable\PropertySpecification.cs" />
+    <Compile Include="Models\FormatSpecification\PropertySpecification.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Constants\DataTypes.cs" />
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Models\HtmlTable\Table.cs" />
     <Compile Include="Models\HtmlTable\Column.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\Templates\AddEntity.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

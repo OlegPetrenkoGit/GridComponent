@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using GridComponent.Models;
 using GridComponent.Models.DataAccess;
-using GridComponent.Models.HtmlTable;
+using GridComponent.Models.FormatSpecification;
 
 namespace GridComponent.Controllers
 {
@@ -31,7 +31,6 @@ namespace GridComponent.Controllers
 
         public ViewResult Index()
         {
-
             return View(clients);
         }
 
@@ -101,18 +100,8 @@ namespace GridComponent.Controllers
 
         public JsonResult GetFormatSpecification(string type)
         {
-            FormatSpecification formatSpecification = new FormatSpecification();
-            switch (type)
-            {
-                case "client":
-                    {
-                        var client = new Client();
-                        formatSpecification = FormatSpecification.Create(client);
-                        break;
-                    }
-            }
-
-            return Json(formatSpecification, JsonRequestBehavior.AllowGet);
+            var typeFormatSpecification = FormatSpecificationFactory.Create(type);
+            return Json(typeFormatSpecification, JsonRequestBehavior.AllowGet);
         }
     }
 }

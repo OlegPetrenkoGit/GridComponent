@@ -5,21 +5,27 @@
 GridController.$inject = ["$http", "$window", "$scope"];
 
 function GridController($http, $window, $scope) {
+    $scope.showAddEntityRow = false;
+    $scope.buttonAddDisabled = true;
     $scope.formatSpecification = null;
+
+    $scope.showAddEntity = function () {
+        $scope.showAddEntityRow = true;
+    };
 
     $scope.AddEntity = function () {
         $(".button-add").hide();
 
         var addEntityRow = $scope.createAddEntityFormRow();
         $(".grid > tbody:last-child").append(addEntityRow);
-    }
+    };
 
-    $scope.AddEntityCancel = function () {
-        $(".button-add").show();
-        $(".grid > tbody:last-child").delete();
-    }
+    //$scope.AddEntityCancel = function () {
+    //    $(".button-add").show();
+    //    $(".grid > tbody:last-child").delete();
+    //};
 
-    $scope.createAddEntityFormRow = function () {
+    $scope.createFormatSpecification = function () {
         var row = "";
         $scope.formatSpecification.Properties.forEach(function (element) {
             if (element.Name === "Id") {
@@ -63,7 +69,7 @@ function GridController($http, $window, $scope) {
         row += buttonAdd + buttonCancel;
         row = "<tr>" + row + "</tr>";
         return row;
-    }
+    };
 
     $scope.submitForm = function () {
         var form = document.getElementById("form");
@@ -89,9 +95,11 @@ function GridController($http, $window, $scope) {
     };
 
     this.getViewModelFormatSpecification = function () {
-        $http.get("/Home/GetFormatSpecification?type=client").success(function (response) {
-            $scope.formatSpecification = response;
-            $(".button-add").prop("disabled", false);
+        var entityType = "GridComponent.Models.Client";
+
+        $http.get("/Home/GetFormatSpecification?type=" + entityType).success(function (response) {
+            $scope.buttonAddDisabled = false;
+            $scope.formatSpecification = createFormatSpecification(response);
         }).error(function (error) {
             console.log(error);
         });
