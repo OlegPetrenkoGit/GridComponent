@@ -148,7 +148,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Templates\AddEntity.html">
+    <Content Include="Content\HtmlTemplates\AddEntity.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />

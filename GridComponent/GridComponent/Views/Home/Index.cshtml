@@ -6,9 +6,9 @@
     @Scripts.Render("~/bundles/Index")
 }
 
-<div ng-controller="GridController" ng-cloak>
+<div ng-controller="GridController" ng-init="getViewModelFormatSpecification()" ng-cloak>
     <form id="form">
         @Html.Grid(Model)
-        <div ng-include="'/Content/Templates/AddEntity.html'"></div>
+        <div ng-include="'/Content/HtmlTemplates/AddEntity.html'"></div>
     </form>
 </div>

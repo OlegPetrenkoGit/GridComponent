@@ -5,19 +5,20 @@
 GridController.$inject = ["$http", "$window", "$scope"];
 
 function GridController($http, $window, $scope) {
+    const dataTypes = [
+        { clrType: "Int32", htmlType: "number" },
+        { clrType: "String", htmlType: "text" },
+        { clrType: "DateTime", htmlType: "date" }
+    ];
+
     $scope.showAddEntityRow = false;
+    $scope.showAddEntityButtonRow = true;
     $scope.buttonAddDisabled = true;
     $scope.formatSpecification = null;
 
     $scope.showAddEntity = function () {
-        $scope.showAddEntityRow = true;
-    };
-
-    $scope.AddEntity = function () { //todo remove
-        $(".button-add").hide();
-
-        var addEntityRow = $scope.createAddEntityFormRow();
-        $(".grid > tbody:last-child").append(addEntityRow);
+        $scope.showAddEntityRow = !$scope.showAddEntityRow;
+        $scope.showAddEntityButtonRow = !$scope.showAddEntityButtonRow;
     };
 
     $scope.createFormatSpecification = function (formatSpecification) {
@@ -36,19 +37,12 @@ function GridController($http, $window, $scope) {
                 header: propertyName,
                 readonly: element.ReadOnly,
                 type: null
-            }
+            };
 
             if (!readonly) {
-                var types = [
-                    { clrType: "Int32", htmlType: "number" },
-                    { clrType: "String", htmlType: "text" },
-                    { clrType: "DateTime", htmlType: "date" }
-                ];
-
-                property.type = types.find(function (type) {
+                property.type = dataTypes.find(function (type) {
                     return type.clrType === entityType;
                 }).htmlType;
-                //  inputElement += "Name='" + propertyName + "'>"; todo add names for form
             }
 
             properties.push(property);
@@ -80,7 +74,7 @@ function GridController($http, $window, $scope) {
         });
     };
 
-    this.getViewModelFormatSpecification = function () {
+    $scope.getViewModelFormatSpecification = function () {
         var entityType = "GridComponent.Models.Client";
 
         $http.get("/Home/GetFormatSpecification?type=" + entityType).success(function (response) {
@@ -90,6 +84,4 @@ function GridController($http, $window, $scope) {
             console.log(error);
         });
     };
-
-    this.getViewModelFormatSpecification();
 }
