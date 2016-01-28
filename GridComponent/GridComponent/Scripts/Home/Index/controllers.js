@@ -13,22 +13,18 @@ function GridController($http, $window, $scope) {
         $scope.showAddEntityRow = true;
     };
 
-    $scope.AddEntity = function () {
+    $scope.AddEntity = function () { //todo remove
         $(".button-add").hide();
 
         var addEntityRow = $scope.createAddEntityFormRow();
         $(".grid > tbody:last-child").append(addEntityRow);
     };
 
-    //$scope.AddEntityCancel = function () {
-    //    $(".button-add").show();
-    //    $(".grid > tbody:last-child").delete();
-    //};
+    $scope.createFormatSpecification = function (formatSpecification) {
+        var properties = [];
 
-    $scope.createFormatSpecification = function () {
-        var row = "";
-        $scope.formatSpecification.Properties.forEach(function (element) {
-            if (element.Name === "Id") {
+        formatSpecification.Properties.forEach(function (element) {
+            if (element.Name === "Id") { //todo set Id readonly in backend
                 element.ReadOnly = true;
             }
 
@@ -36,39 +32,29 @@ function GridController($http, $window, $scope) {
             var propertyName = element.Name;
             var readonly = element.ReadOnly;
 
-            if (readonly) {
-                row += "<td>-</td>";
-            } else {
-                var inputElement = "<input type=";
-                switch (entityType) {
-                    case "Int32":
-                        {
-                            inputElement += "'number'";
-                            break;
-                        }
-                    case "String":
-                        {
-                            inputElement += "'text'";
-                            break;
-                        }
-                    case "DateTime":
-                        {
-                            inputElement += "'date'";
-                            break;
-                        }
-                }
-
-                inputElement += "Name='" + propertyName + "'>";
-                row += "<td>" + inputElement + "</td>";
+            var property = {
+                header: propertyName,
+                readonly: element.ReadOnly,
+                type: null
             }
+
+            if (!readonly) {
+                var types = [
+                    { clrType: "Int32", htmlType: "number" },
+                    { clrType: "String", htmlType: "text" },
+                    { clrType: "DateTime", htmlType: "date" }
+                ];
+
+                property.type = types.find(function (type) {
+                    return type.clrType === entityType;
+                }).htmlType;
+                //  inputElement += "Name='" + propertyName + "'>"; todo add names for form
+            }
+
+            properties.push(property);
         });
 
-        var buttonAdd = "<td><button type='submit'>Save</button></td>";
-        var buttonCancel = "<td><button ng-click='AddEntityCancel()'>Cancel</button></td>"; //add watcher
-
-        row += buttonAdd + buttonCancel;
-        row = "<tr>" + row + "</tr>";
-        return row;
+        return properties;
     };
 
     $scope.submitForm = function () {
@@ -99,7 +85,7 @@ function GridController($http, $window, $scope) {
 
         $http.get("/Home/GetFormatSpecification?type=" + entityType).success(function (response) {
             $scope.buttonAddDisabled = false;
-            $scope.formatSpecification = createFormatSpecification(response);
+            $scope.formatSpecification = $scope.createFormatSpecification(response);
         }).error(function (error) {
             console.log(error);
         });

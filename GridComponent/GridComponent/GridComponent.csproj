@@ -123,7 +123,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IHomeController.cs" />
     <Compile Include="Models\DataAccess\EntitiesContext.cs" />
@@ -145,19 +144,21 @@
     <Compile Include="Models\HtmlTable\Table.cs" />
     <Compile Include="Models\HtmlTable\Column.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Content\Templates\AddEntity.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Templates\AddEntity.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\Vendors\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\Home\Index\controllers.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\Libraries\angular.min.js" />
+    <Content Include="Scripts\Vendors\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Vendors\angular.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -168,7 +169,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -176,7 +176,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\Vendors\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
