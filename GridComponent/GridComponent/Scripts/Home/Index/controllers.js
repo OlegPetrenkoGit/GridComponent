@@ -34,16 +34,16 @@ function GridController($http, $window, $scope) {
             var readonly = element.ReadOnly;
 
             var property = {
-                header: propertyName,
+                name: propertyName,
                 readonly: element.ReadOnly,
                 type: null
             };
 
-            if (!readonly) {
-                property.type = dataTypes.find(function (type) {
-                    return type.clrType === entityType;
-                }).htmlType;
-            }
+            //   if (!readonly) {
+            property.type = dataTypes.find(function (type) {
+                return type.clrType === entityType;
+            }).htmlType;
+            //   }
 
             properties.push(property);
         });
@@ -51,26 +51,46 @@ function GridController($http, $window, $scope) {
         return properties;
     };
 
-    $scope.submitForm = function () {
-        var form = document.getElementById("form");
+    $scope.submitAddEntity = function (event, form) {
 
-        var dataObject = new Object;
-        $scope.formatSpecification.Properties.forEach(function (element) {
-            if (!element.ReadOnly) {
-                var propertyName = element.Name;
-                var value = form.elements[propertyName].value;
-                dataObject[propertyName] = value;
-            }
-        });
+       // var formData = new FormData();
+        //var strigifiedSpec = JSON.stringify($scope.formatSpecification);
+        //formData.append("FormatSpecification", strigifiedSpec);
+
+        ////var formElement = angular.element(event.target).serialize();
+
+        //var inputs = angular.element(event.target).context.getElementsByTagName("input");;
+
+        //var entityProperties = [];
+        //var count = inputs.length;
+        //for (var i = 0; i < count; i++) {
+        //    var current = inputs[i];
+        //    entityProperties.push({ name: current.name, value: current.value });
+        //}
+
+        //var strigifiedProps = JSON.stringify(entityProperties);
+        //formData.append("EntityProperties", strigifiedProps);
+
+
+        //formData.append("value", JSON.stringify("lol"));
+
+
+        var formData = new FormData();
+      //  var strigified = JSON.stringify("textForTest");
+
+        formData.append("blank", JSON.stringify("blank"));
+
+        formData.append("String", "textForTest");
 
         $http({
             method: "POST",
             url: "/Home/Create",
-            data: dataObject,
+            data: formData,
             headers: { 'Content-Type': "application/x-www-form-urlencoded" }
+          //  headers: { 'Content-Type': "application/json" }
         })
-        .success(function (data) {
-            console.log(data);
+        .success(function (response) {
+            console.log(response);
         });
     };
 

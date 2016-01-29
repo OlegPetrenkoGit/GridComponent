@@ -24,36 +24,27 @@ namespace GridComponent.Models.HtmlTable
 
         public override string ToString()
         {
-            var rowsTagsToConvert = new List<Tuple<List<TagBuilder>, Dictionary<string, string>>>();
+            Func<List<TagBuilder>, Dictionary<string, string>, Tuple<List<TagBuilder>, Dictionary<string, string>>>
+                CreateTuple = (tags, attributes) => new Tuple<List<TagBuilder>, Dictionary<string, string>>(tags, attributes);
 
+            var rowsTagsToConvert = new List<Tuple<List<TagBuilder>, Dictionary<string, string>>>();
 
             var headerCells = new List<TagBuilder>();
             columns.ForEach(h => headerCells.Add(new TagBuilder("th") { InnerHtml = h.Name }));
+            rowsTagsToConvert.Add(CreateTuple(headerCells, null));
 
-            rowsTagsToConvert.Add(
-                new Tuple<List<TagBuilder>, Dictionary<string, string>>(headerCells, null)
-                );
-
-            var entriesTags = entries
-                .Select(e => new Tuple<List<TagBuilder>, Dictionary<string, string>>(e, null))
-                .ToList();
-
+            var entriesTags = entries.Select(e => CreateTuple(e, null)).ToList();
             entriesTags.ForEach(rowsTagsToConvert.Add);
 
             var rowButtons = new List<TagBuilder>();
             buttons.ForEach(b => rowButtons.Add(new TagBuilder("td") { InnerHtml = b.ToString() }));
 
-            rowsTagsToConvert.Add(
-              new Tuple<List<TagBuilder>, Dictionary<string, string>>(
-                  rowButtons,
-                  new Dictionary<string, string>
-                  {
-                      {"ng-show", "showAddEntityButtonRow"}
-                  })
-              );
+            var buttonsRowAttributes = new Dictionary<string, string> { { "ng-show", "showAddEntityButtonRow" } };
+            rowsTagsToConvert.Add(CreateTuple(rowButtons, buttonsRowAttributes));
 
             var rowsStringBuilder = new StringBuilder();
-            rowsTagsToConvert.Select(hr => CreateHtmlTableRow(hr.Item1, hr.Item2)).ToList().ForEach(r => rowsStringBuilder.Append(r));
+            rowsTagsToConvert.Select(hr => CreateHtmlTableRow(hr.Item1, hr.Item2))
+                .ToList().ForEach(r => rowsStringBuilder.Append(r));
 
             var table = new TagBuilder("table")
             {
@@ -68,10 +59,7 @@ namespace GridComponent.Models.HtmlTable
             var rowStringBuilder = new StringBuilder();
             tdElements.ForEach(r => rowStringBuilder.Append(r.ToString()));
 
-            var tableRow = new TagBuilder("tr")
-            {
-                InnerHtml = rowStringBuilder.ToString()
-            };
+            var tableRow = new TagBuilder("tr") { InnerHtml = rowStringBuilder.ToString() };
 
             attributes.ForEach(a => tableRow.Attributes.Add(a));
             var htmlTableRow = tableRow.ToString();

@@ -7,8 +7,6 @@
 }
 
 <div ng-controller="GridController" ng-init="getViewModelFormatSpecification()" ng-cloak>
-    <form id="form">
-        @Html.Grid(Model)
-        <div ng-include="'/Content/HtmlTemplates/AddEntity.html'"></div>
-    </form>
+    @Html.Grid(Model)
+    <div ng-include="'/Content/HtmlTemplates/AddEntity.html'"></div>
 </div>

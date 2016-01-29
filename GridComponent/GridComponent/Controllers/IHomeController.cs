@@ -5,7 +5,7 @@ namespace GridComponent.Controllers
 {
     public interface IHomeController
     {
-        ActionResult Create(object obj, Type t);
+        // ActionResult Create(object obj, Type t);
         ActionResult Update(object obj, Type t);
         ActionResult Delete(object obj, Type t);
     }

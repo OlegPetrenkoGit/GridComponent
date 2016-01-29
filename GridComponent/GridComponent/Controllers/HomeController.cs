@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 using GridComponent.Models;
 using GridComponent.Models.DataAccess;
 using GridComponent.Models.FormatSpecification;
+using Newtonsoft.Json;
 
 namespace GridComponent.Controllers
 {
@@ -11,17 +13,9 @@ namespace GridComponent.Controllers
     {
         private readonly List<Client> clients = new List<Client>
             {
-                new Client()
+               new Client()
                 {
-                    BirthDate = new DateTime(1992, 7, 23),
-                    Name = "Anthony",
-                    Surname = "Hidden",
-                    RegistrationDate = new DateTime(2010, 11, 12)
-                },
-
-                new Client()
-                {
-                    BirthDate = new DateTime(1997, 2, 11),
+                   BirthDate = new DateTime(1997, 2, 11),
                     Name = "Joseph",
                     Surname = "Secret",
                     RegistrationDate = new DateTime(2012, 4, 6)
@@ -35,9 +29,22 @@ namespace GridComponent.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(object obj, Type t)
+        public HttpStatusCodeResult Create()
         {
-            return View();
+            try
+            {
+                var json = JsonConvert.DeserializeObject(Request.Form["String"]);
+                var data = Request.Form["String"];
+                
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            //   return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         [HttpPost]
@@ -49,10 +56,10 @@ namespace GridComponent.Controllers
                 {
                     var client = new Client
                     {
-                        BirthDate = new DateTime(1997, 2, 11),
+                        //    BirthDate = new DateTime(1997, 2, 11),
                         Name = "TEST",
                         Surname = "TEST",
-                        RegistrationDate = new DateTime(2012, 4, 6)
+                        //   RegistrationDate = new DateTime(2012, 4, 6)
                     };
 
                     context.Entities.Add(client);

@@ -3,8 +3,7 @@
     .directive("entityPropertyHeader", function () {
         return {
             link: function (scope, element, attributes) {
-                element.attr("name", scope.property.header);
-                element.text(scope.property.header);
+                element.text(scope.property.name);
             }
         };
     })
@@ -13,7 +12,10 @@
             link: function (scope, element, attributes) {
                 var property = scope.property;
                 if (!property.readonly) {
-                    var inputHtml = '<input type="' + property.type + '" name="' + property.Name + '"/>';
+                    var inputHtml = '<input type="' + property.type + '" name="' + property.name + '"/>';
+                    $(element).append(inputHtml);
+                } else {
+                    var inputHtml = '<input type="hidden" name="' + property.name + '" value="0"' + '/>'; //todo set default value for type
                     $(element).append(inputHtml);
                 }
             }
