@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace GridComponent.Models.DataAccess
+namespace GridComponent.DataAccess
 {
     public class EntitiesContext<T> : DbContext where T : class
     {

@@ -1,5 +1,5 @@
 ﻿<div ng-show="showAddEntityRow">
-    <form name="create" ng-submit="submitAddEntity($event, create)" method="post">
+    <form action="/Home/Create" method="post">
         <table class="table table-striped table-bordered">
             <tr>
                 <th entity-property-header ng-repeat="property in formatSpecification"></th>

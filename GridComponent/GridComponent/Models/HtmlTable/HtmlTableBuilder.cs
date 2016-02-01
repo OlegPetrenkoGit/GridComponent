@@ -9,7 +9,7 @@ namespace GridComponent.Models.HtmlTable
 {
     static class HtmlTableBuilder<T>
     {
-        public static string CreateHtmlTable(List<T> entries)
+        public static string CreateHtmlTable(IEnumerable<T> entries)
         {
             var newTable = new Table<T>(entries);
 

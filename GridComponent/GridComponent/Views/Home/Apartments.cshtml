@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Client>
-
-@Html.ActionLink("Apartments", "Apartments")
+﻿@model IEnumerable<Apartment>
 
 <div ng-controller="GridController" ng-init="getViewModelFormatSpecification()" ng-cloak>
     @Html.Grid(Model)

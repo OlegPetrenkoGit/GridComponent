@@ -1,5 +1,5 @@
 ﻿angular
-    .module("GridComponent", [])
+    .module("GridComponent")
     .directive("entityPropertyHeader", function () {
         return {
             link: function (scope, element, attributes) {
@@ -7,17 +7,24 @@
             }
         };
     })
-    .directive("entityPropertyInput", function () {
+    .directive("entityPropertyInput", ["ClrJsTypes", function (ClrJsTypes) {
         return {
             link: function (scope, element, attributes) {
                 var property = scope.property;
+                var defaultValue = ClrJsTypes.find(function (type) {
+                    return type.htmlType === property.type;
+                }).defaultValue;
+
+                var inputHtml = '<input type="';
                 if (!property.readonly) {
-                    var inputHtml = '<input type="' + property.type + '" name="' + property.name + '"/>';
-                    $(element).append(inputHtml);
+                    inputHtml += property.type;
                 } else {
-                    var inputHtml = '<input type="hidden" name="' + property.name + '" value="0"' + '/>'; //todo set default value for type
-                    $(element).append(inputHtml);
+                    inputHtml += "hidden";
                 }
+
+                inputHtml += '" name=obj.' + property.name + ' value="' + defaultValue + '"/>';
+
+                $(element).append(inputHtml);
             }
         };
-    });
+    }]);

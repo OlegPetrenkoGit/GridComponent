@@ -12,9 +12,9 @@ namespace GridComponent.Models.HtmlTable
         public List<Column> columns;
         public List<List<TagBuilder>> entries;
         public List<TagBuilder> buttons;
-        public List<T> userInput;
+        public IEnumerable<T> userInput;
 
-        public Table(List<T> inputEntries)
+        public Table(IEnumerable<T> inputEntries)
         {
             userInput = inputEntries;
 

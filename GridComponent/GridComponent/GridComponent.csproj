@@ -39,12 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -124,9 +118,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IHomeController.cs" />
-    <Compile Include="Models\DataAccess\EntitiesContext.cs" />
-    <Compile Include="Models\DataAccess\SqlServerConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,7 +127,6 @@
     <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
     <Compile Include="Models\FormatSpecification\PropertySpecification.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\Constants\DataTypes.cs" />
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\HtmlTable\EntryButtonCell.cs" />
     <Compile Include="Models\HtmlTable\EntryPropertyCell.cs" />
@@ -144,6 +134,7 @@
     <Compile Include="Models\HtmlTable\Table.cs" />
     <Compile Include="Models\HtmlTable\Column.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EntitiesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -156,6 +147,7 @@
     <None Include="Scripts\Vendors\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\directives.js" />
+    <Content Include="Scripts\constants.js" />
     <Content Include="Scripts\Home\Index\controllers.js" />
     <Content Include="Scripts\Vendors\jquery-1.10.2.min.js" />
     <Content Include="Scripts\Vendors\angular.min.js" />
@@ -177,8 +169,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\Vendors\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Apartments.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GridComponent.DataAccess\GridComponent.DataAccess.csproj">
+      <Project>{e89e6e2c-1aca-467a-b3b2-f944dd6d213c}</Project>
+      <Name>GridComponent.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

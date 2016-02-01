@@ -1,2 +1,2 @@
 ﻿angular
-    .module('GridComponent', [])
+    .module("GridComponent", []);

@@ -9,7 +9,7 @@ namespace GridComponent
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css"
-              ));
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/Vendors/jquery-1.10.2.min.js"
@@ -18,6 +18,7 @@ namespace GridComponent
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/Vendors/angular.min.js",
                 "~/Scripts/application.js",
+                "~/Scripts/constants.js",
                 "~/Scripts/directives.js"
                 ));
 

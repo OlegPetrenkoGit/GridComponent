@@ -14,7 +14,7 @@ namespace GridComponent.Models.FormatSpecification
                 {
                     Name = p.Name,
                     Type = p.PropertyType.ToString(),
-                    ReadOnly = !p.CanWrite
+                    ReadOnly = p.Name == "Id" || !p.CanWrite
                 }).ToList();
         }
     }
