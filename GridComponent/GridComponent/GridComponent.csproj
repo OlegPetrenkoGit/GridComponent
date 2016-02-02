@@ -39,6 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -121,7 +128,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\FormatSpecification\FormatSpecification.cs" />
     <Compile Include="Models\FormatSpecification\FormatSpecificationFactory.cs" />
     <Compile Include="Models\HtmlTable\Interface\IEntryCell.cs" />
@@ -137,20 +143,19 @@
     <Compile Include="Services\EntitiesService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\HtmlTemplates\AddEntity.html">
+    <Content Include="Assets\Styles\Vendors\bootstrap.css" />
+    <Content Include="Assets\Styles\Vendors\bootstrap.min.css" />
+    <Content Include="Assets\Styles\Custom\Site.css" />
+    <Content Include="Assets\HtmlTemplates\AddEntity.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\Vendors\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\application.js" />
-    <Content Include="Scripts\directives.js" />
-    <Content Include="Scripts\constants.js" />
-    <Content Include="Scripts\Home\Index\controllers.js" />
-    <Content Include="Scripts\Vendors\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\Vendors\angular.min.js" />
+    <Content Include="Assets\Scripts\Custom\application.js" />
+    <Content Include="Assets\Scripts\Custom\directives.js" />
+    <Content Include="Assets\Scripts\Custom\constants.js" />
+    <Content Include="Assets\Scripts\Custom\Home\Index\controllers.js" />
+    <Content Include="Assets\Scripts\Vendors\angular.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -160,7 +165,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -168,8 +172,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\Vendors\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Apartments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GridComponent.DataAccess\GridComponent.DataAccess.csproj">

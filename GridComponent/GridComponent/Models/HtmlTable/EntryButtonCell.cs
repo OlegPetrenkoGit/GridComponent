@@ -23,7 +23,7 @@ namespace GridComponent.Models.HtmlTable
                     }
                 case "Delete":
                     {
-                        function = "DeleteEntity()";
+                        function = "deleteEntity()";
                         className = "button-delete";
                         break;
                     }

@@ -6,25 +6,20 @@ namespace GridComponent
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/site.css"
-                ));
+            bundles.Add(new StyleBundle("~/styles/vendors").Include(
+                "~/Assets/Styles/Vendors/bootstrap.min.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/Vendors/jquery-1.10.2.min.js"
-                ));
+            bundles.Add(new StyleBundle("~/styles/custom").Include(
+                "~/Assets/Styles/Custom/Site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Scripts/Vendors/angular.min.js",
-                "~/Scripts/application.js",
-                "~/Scripts/constants.js",
-                "~/Scripts/directives.js"
-                ));
+            bundles.Add(new ScriptBundle("~/scripts/angular").Include(
+                "~/Assets/Scripts/Vendors/angular.min.js",
+                "~/Assets/Scripts/Custom/application.js",
+                "~/Assets/Scripts/Custom/constants.js",
+                "~/Assets/Scripts/Custom/directives.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Index").Include(
-               "~/Scripts/Home/Index/controllers.js"
-               ));
+            bundles.Add(new ScriptBundle("~/scripts/Home/Index").Include(
+                "~/Assets/Scripts/Custom/Home/Index/controllers.js"));
         }
     }
 }

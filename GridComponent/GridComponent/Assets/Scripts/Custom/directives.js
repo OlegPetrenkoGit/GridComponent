@@ -23,8 +23,7 @@
                 }
 
                 inputHtml += '" name=obj.' + property.name + ' value="' + defaultValue + '"/>';
-
-                $(element).append(inputHtml);
+                element.append(inputHtml);
             }
         };
     }]);
